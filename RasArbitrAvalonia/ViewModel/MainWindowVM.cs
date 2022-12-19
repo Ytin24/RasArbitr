@@ -9,8 +9,6 @@ namespace YLauncherAvalonia.ViewModel;
 
 public class MainWindowVM : ViewModel
 {
-
-    
     public delegate void CloseWindow();
 
     public event CloseWindow Close;

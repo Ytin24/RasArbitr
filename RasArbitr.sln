@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasArbitrAvalonia", "RasArbitrAvalonia\RasArbitrAvalonia.csproj", "{B159BF40-3E6A-4B79-A52F-EE56435F7277}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasArbitrCore", "RasArbitrCore\RasArbitrCore.csproj", "{C968B7D0-F7F0-443A-8FFC-C5395F710752}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{B159BF40-3E6A-4B79-A52F-EE56435F7277}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B159BF40-3E6A-4B79-A52F-EE56435F7277}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B159BF40-3E6A-4B79-A52F-EE56435F7277}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C968B7D0-F7F0-443A-8FFC-C5395F710752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C968B7D0-F7F0-443A-8FFC-C5395F710752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C968B7D0-F7F0-443A-8FFC-C5395F710752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C968B7D0-F7F0-443A-8FFC-C5395F710752}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
