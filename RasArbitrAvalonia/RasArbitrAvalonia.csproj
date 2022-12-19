@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <RootNamespace>YLauncherAvalonia</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Remove=".gitignore" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <TrimmerRootDescriptor Include="Roots.xml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="0.10.18" />
+        <PackageReference Include="Avalonia.Desktop" Version="0.10.18" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.18" />
+        <PackageReference Include="AvaloniaSpacedGrid" Version="0.10.18.1" />
+        <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\close.png" />
+      <None Remove="Assets\fullscreen.png" />
+      <None Remove="Assets\hide.png" />
+      <None Remove="Assets\ico.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="View\MainWindow.axaml.cs">
+        <DependentUpon>MainWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="View\Assets\Unwrap.png" />
+      <AvaloniaResource Include="View\Assets\Unwrap.png" />
+      <None Remove="View\Assets\Minimize.png" />
+      <AvaloniaResource Include="View\Assets\Minimize.png" />
+      <None Remove="View\Assets\ico.png" />
+      <None Remove="View\Assets\Exit.png" />
+      <AvaloniaResource Include="View\Assets\Exit.png" />
+      <None Remove="View\Assets\LauncherIco.png" />
+      <None Remove="View\Assets\YLauncher.png" />
+      <None Remove="View\Assets\KolhoZ.png" />
+      <AvaloniaResource Include="View\Assets\KolhoZ.png" />
+      <None Remove="View\Assets\folder.png" />
+      <AvaloniaResource Include="View\Assets\folder.png" />
+      <None Remove="View\Assets\court.png" />
+      <AvaloniaResource Include="View\Assets\court.png" />
+      <None Remove="View\Assets\group.png" />
+      <AvaloniaResource Include="View\Assets\group.png" />
+      <None Remove="View\Assets\text.png" />
+      <AvaloniaResource Include="View\Assets\text.png" />
+      <None Remove="View\Assets\open-magazine.png" />
+      <AvaloniaResource Include="View\Assets\open-magazine.png" />
+      <None Remove="View\Assets\calendar.png" />
+      <AvaloniaResource Include="View\Assets\calendar.png" />
+      <None Remove="View\Assets\book-closed-with-label.png" />
+      <AvaloniaResource Include="View\Assets\book-closed-with-label.png" />
+    </ItemGroup>
+</Project>
