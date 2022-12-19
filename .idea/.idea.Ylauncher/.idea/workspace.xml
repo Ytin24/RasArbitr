@@ -5,43 +5,27 @@
     <projectFile>Ylauncher/Ylauncher.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4d2f470-9e6b-4470-bb49-d77703170b5d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Ylauncher/.idea/avalonia.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Ylauncher/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitr.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/App.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/App.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/RasArbitrAvalonia.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/Roots.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/Exit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/KolhoZ.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/Minimize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/Unwrap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/book-closed-with-label.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/calendar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/court.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/group.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/open-magazine.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/Assets/text.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/MainWindow.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/View/MainWindow.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/ViewModel/MainWindowVM.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/ViewModel/ViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RasArbitrAvalonia/app.manifest" afterDir="false" />
+    <list default="true" id="e4d2f470-9e6b-4470-bb49-d77703170b5d" name="Changes" comment="Frontend 70%">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ylauncher/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ylauncher/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RasArbitrAvalonia/ViewModel/MainWindowVM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RasArbitrAvalonia/ViewModel/MainWindowVM.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Backend_Test" />
+      </map>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/35e587a7523f70de7ea0ab2e6d5719159f547960ebc121d8eb1ffb1461cac3/ClassicDesktopStyleApplicationLifetime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/febaaea7d1febf750d01835d8ce98caadccdca983ca6fc9be24f8e9deabcda1/AppBuilderBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../CmlLib.Core/CmlLib/Core/Version/MVersionParser.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/RasArbitrAvalonia/ViewModel/ViewModel.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -128,8 +112,16 @@
       <workItem from="1671444867081" duration="541000" />
       <workItem from="1671445680075" duration="99000" />
       <workItem from="1671445975657" duration="299000" />
-      <workItem from="1671446437903" duration="7603000" />
+      <workItem from="1671446437903" duration="8249000" />
     </task>
+    <task id="LOCAL-00001" summary="Frontend 70%">
+      <created>1671454812512</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671454812512</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,5 +131,7 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Frontend 70%" />
+    <option name="LAST_COMMIT_MESSAGE" value="Frontend 70%" />
   </component>
 </project>
