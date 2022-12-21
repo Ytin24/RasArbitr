@@ -12,7 +12,6 @@ public partial class MainWindow : Window
         InitializeComponent();
         var vm = this.DataContext as MainWindowVM;
         vm.Close += () => { this.Close(0); };
-        RasArbitrCore.GetCookies.TEst();
 
     }
 
