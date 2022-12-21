@@ -3,19 +3,21 @@ using CefSharp.OffScreen;
 
 namespace RasArbitrCore;
 
-public class RasWeb
+public static class RasWeb
 {
     public struct Cookies
-    { 
+    {
         public string Wasm;
         public string Pr_fp;
     }
-    public async Task<Cookies> GetCookies()
+
+    public static async Task<Cookies> GetCookies()
     {
         string? wasm, pr_fp;
+        string url = "https://ras.arbitr.ru/";
         bool failed;
 
-        using (var browser = new ChromiumWebBrowser())
+        using (var browser = new ChromiumWebBrowser(url))
         {
             var initialLoadResponse = await browser.WaitForInitialLoadAsync();
 
@@ -43,7 +45,7 @@ public class RasWeb
 
             // Создайм структуру из полученных куки //
             var cookies = new Cookies
-            { 
+            {
                 Wasm = wasm,
                 Pr_fp = pr_fp
             };

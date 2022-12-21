@@ -6,8 +6,6 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <RootNamespace>YLauncherAvalonia</RootNamespace>
-
-		<CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
     </PropertyGroup>
     <ItemGroup>
         <None Remove=".gitignore" />
