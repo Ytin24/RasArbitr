@@ -1,4 +1,4 @@
-﻿namespace RasArbitrWPF.Model
+﻿namespace RasArbitrCore.Model
 {
     public class CourtsCodes
     {
@@ -127,9 +127,11 @@
             {"KUDIMKAR","псп арбитражного суда пермского края"},
             {"NARYANMAR","псп арбитражный суд архангельской области"},
             {"SIP","суд по интеллектуальным правам"},
+            {string.Empty, "[не задан]"}
         };
 
-        public static string[] names = {
+        private static string[] names = {
+            "[НЕ ЗАДАН]",
             "Верховный Суд РФ",
             "Высший Арбитражный Суд РФ",
             "АС Волго-Вятского округа",
@@ -256,13 +258,18 @@
             "Суд по интеллектуальным правам"
         };
 
+        public string[] Names
+        {
+            get => names;
+        }
+
         public string GetCode(string CourtsName)
         {
-            return codes.GetValueOrDefault(CourtsName.ToLower(), null);
+            return codes.FirstOrDefault(v => v.Value == CourtsName.ToLower()).Key;
         }
-        public string GetName(string Code)
-        {
-            return codes[Code];
-        }
+        //public string GetName(string Code)
+        //{
+        //    return codes[Code];
+        //}
     }
 }
