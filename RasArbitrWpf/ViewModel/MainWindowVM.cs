@@ -18,9 +18,10 @@ public class MainWindowVM : ViewModel
         get => _windowState;
         set => Set(ref _windowState, value);
     }
+//TODO FixCommands for buttons
     private void TitleBarButtons_Click(object Name)
     {
-        switch (Name.ToString)
+        switch (Name.ToString())
         {
             case "Exit":
                 Close.Invoke();
