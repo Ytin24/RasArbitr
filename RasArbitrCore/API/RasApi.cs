@@ -1,22 +1,25 @@
 ﻿using RestSharp;
-
+using Newtonsoft.Json;
 namespace RasArbitrCore.API
 {
     public static class RasApi
     {
-        public static PostResult? Post(PostRequest requestBody, RasWeb.Cookies cookies)
+        public static async Task<PostResult?> Post(PostRequest requestBody, RasWeb.Cookies cookies)
         {
             string url = "https://ras.arbitr.ru/";
             var client = new RestClient(url);
+            var request = new RestRequest("Ras/Search");
             string rasCookies = $"wasm={cookies.Wasm}; pr_fp={cookies.Pr_fp}";
 
             client.AddDefaultHeader("cookie", rasCookies);
             client.AddDefaultHeader("referer", url);
             client.AddDefaultHeader("x-requested-with", "XMLHttpRequest");
+            request.AddJsonBody(requestBody);
 
-            var result = client.PostJson<PostRequest, PostResult>("Ras/Search", requestBody);
+            var result = await client.PostAsync(request);
 
-            return result;
+            return JsonConvert.DeserializeObject<PostResult>(result.Content);
+
         }
     }
 }

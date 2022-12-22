@@ -1,3 +1,5 @@
+using RasArbitrCore;
+using RasArbitrCore.API;
 using System.Windows;
 
 namespace RasArbitrWPF.ViewModel;
@@ -36,6 +38,21 @@ public class MainWindowVM : ViewModel
     //}
 
     ///////////////////////////////////////////////////////////////////
+    private ExecCommand testclick;
+    public ExecCommand TestClick {
+        get{
+                return testclick ?? (testclick = new ExecCommand(o => {
+                    TEst();
+
+
+            }));
+    }
+    }
+    private async void TEst() {
+        var a = await RasWeb.GetCookies(); //get cookies
+        var b = await RasApi.Post(new PostRequest(), a); //get responce
+        //TODO# Parse Items to Collection for View
+    }
 
     private ExecCommand titleBtnCommand;
     public ExecCommand TitleBtnCommand
