@@ -43,7 +43,7 @@ public static class RasWeb
                     browser.Dispose();
             } while (failed);
 
-            // Создайм структуру из полученных куки //
+            // Создаём структуру из полученных куки //
             var cookies = new Cookies
             {
                 Wasm = wasm,

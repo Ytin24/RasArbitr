@@ -91,13 +91,13 @@
                     <TextBlock Text="KolhoZ_Parser" FontSize="16" Foreground="white" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button  x:Name="Minimize" Padding="0" Height="25" Width="25" Command="{Binding Path=TitleBarButtons_Click}" CommandParameter="Minimize" >
+                            <Button  x:Name="Minimize" Padding="0" Height="25" Width="25" Command="{Binding Path=TitleBtnCommand}" CommandParameter="Minimize" >
                         <Image Source="Assets\Minimize.png"></Image>
                     </Button>
-                            <Button x:Name="Unwrap" Padding="0" Height="25" Width="25"  Command="{Binding Path=TitleBarButtons_Click}" CommandParameter="Unwrap" >
+                            <Button x:Name="Unwrap" Padding="0" Height="25" Width="25"  Command="{Binding Path=TitleBtnCommand}" CommandParameter="Unwrap" >
                         <Image Source="Assets/Unwrap.png"></Image>
                     </Button>
-                            <Button x:Name="Exit" Padding="0" Height="25" Width="25"  Command="{Binding Path=TitleBarButtons_Click}" CommandParameter="Exit">
+                            <Button x:Name="Exit" Padding="0" Height="25" Width="25"  Command="{Binding Path=TitleBtnCommand}" CommandParameter="Exit">
                         <Image Source="Assets/Exit.png"></Image>
                     </Button>
                 </StackPanel>
