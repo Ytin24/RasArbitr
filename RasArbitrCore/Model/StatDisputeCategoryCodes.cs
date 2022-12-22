@@ -2,9 +2,9 @@
 {
     public class StatDisputeCategoryCodes
     {
-        private static Dictionary<string, string> categories = new()
+        private static Dictionary<string, string?> categories = new()
         {
-            { "[НЕ ЗАДАН]", string.Empty },
+            { "[НЕ ЗАДАН]", null },
             { "1. Споры о заключении договоров(контрактов)", "1" },
             { "1.1. Споры о заключении договоров на поставку товаров, выполнение работ, оказание услуг для государственных и муниципальных нужд", "1.1" },
             { "2. Споры о признании договоров недействительными", "2" },
@@ -258,9 +258,9 @@
             get => names;
         }
 
-        public string GetCode(string TypeName)
+        public string GetCode(string CategoryName)
         {
-            return categories.GetValueOrDefault(TypeName);
+            return categories.GetValueOrDefault(CategoryName);
         }
     }
 }

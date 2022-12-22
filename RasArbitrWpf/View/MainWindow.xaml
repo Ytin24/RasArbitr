@@ -196,9 +196,9 @@
             <!--EndMenu-->
 
             <StackPanel  Grid.Row="1" Grid.Column="2" Orientation="Horizontal"   HorizontalAlignment="Right" VerticalAlignment="Center">
-                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0"></ComboBox>
-                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0"></ComboBox>
-                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0"></ComboBox>
+                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0" ItemsSource="{Binding Path=InstanceTypes.Names}" SelectedItem="{Binding Path=SelectedInstType}"></ComboBox>
+                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0" ItemsSource="{Binding Path=Statuses.Names}" SelectedItem="{Binding Path=IsFinished}"></ComboBox>
+                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0" ItemsSource="{Binding Path=Years.DocYears}" SelectedItem="{Binding Path=SelectedYear}"></ComboBox>
             </StackPanel>
             <!--EndTopMain-->
             <!--Main-->

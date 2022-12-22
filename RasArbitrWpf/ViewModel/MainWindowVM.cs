@@ -83,7 +83,13 @@ public class MainWindowVM : ViewModel
                         $"Суд: {selectedCourt}\n" +
                         $"Дело: {Case}\n" +
                         $"Дата от: {request.DateFrom.ToString()}\n" +
-                        $"Дата до: {request.DateTo.ToString()}\n");
+                        $"Дата до: {request.DateTo.ToString()}\n" +
+
+                        "\n" +
+
+                        $"Тип Документа: {selectedInstType}\n" +
+                        $"Завершён: {isFinished}\n" +
+                        $"Год: {selectedYear}");
                 }));
         }
     }
@@ -110,7 +116,7 @@ public class MainWindowVM : ViewModel
         get => courts;
     }
 
-    private string selectedCourt = string.Empty;
+    private string? selectedCourt = null;
     public string SelectedCourt
     {
         get => selectedCourt;
@@ -124,7 +130,7 @@ public class MainWindowVM : ViewModel
         get => types;
     }
 
-    private string selectedType = string.Empty;
+    private string? selectedType = null;
     public string SelectedType
     {
         get => selectedType;
@@ -138,7 +144,7 @@ public class MainWindowVM : ViewModel
         get => categories;
     }
 
-    private string selectedCategory = string.Empty;
+    private string? selectedCategory = null;
     public string SelectedCategory
     {
         get => selectedCategory;
@@ -146,11 +152,54 @@ public class MainWindowVM : ViewModel
     }
 
     // Номер дела //
-    private List<string> cases = new() { string.Empty };
+    private List<string?> cases = new() { null };
     public string Case
     {
         get => cases[0];
         set => cases.Insert(0, value);
+    }
+
+    //// ВЕРХНЯЯ ПАНЕЛЬ ////
+    // Тип документа //
+    private InstanceTypesCodes instTypes = new();
+    public InstanceTypesCodes InstanceTypes
+    {
+        get => instTypes;
+    }
+
+    private string? selectedInstType = null;
+    public string SelectedInstType
+    {
+        get => selectedInstType;
+        set => selectedInstType = instTypes.GetCode(value);
+    }
+
+    // Статус //
+    private StatusCodes statuses = new();
+    public StatusCodes Statuses
+    {
+        get => statuses;
+    }
+
+    private string? isFinished = null;
+    public string IsFinished
+    {
+        get => isFinished;
+        set => isFinished = statuses.GetCode(value);
+    }
+
+    // Год //
+    private Years years = new();
+    public Years Years
+    {
+        get => years;
+    }
+
+    private string? selectedYear = null;
+    public string? SelectedYear
+    {
+        get => selectedYear;
+        set => selectedYear = value;
     }
     #endregion
 }

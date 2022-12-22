@@ -2,7 +2,7 @@
 {
     public class CourtsCodes
     {
-        private Dictionary<string, string> codes = new(){
+        private static Dictionary<string?, string> codes = new(){
             {"VS","верховный суд рф"},
             {"VAS","высший арбитражный суд рф"},
             {"FASVVO","ас волго-вятского округа"},

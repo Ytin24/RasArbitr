@@ -9,7 +9,7 @@
         public string? StatDisputeCategory { get; set; }
         public List<string>? Courts { get; set; }
         public DateTime? DateFrom { get; set; } = DateTime.Parse("2000-01-01T00:00:00"); //default
-        public DateTime? DateTo { get; set; } = DateTime.Parse("2030-01-01T23:59:59"); //default
+        public DateTime? DateTo { get; set; } = DateTime.Parse($"{DateTime.Now.Year + 8}-01-01T23:59:59"); //default
 
         public List<string>? InstanceType { get; set; }     // От "1" до "13"
         public string? IsFinished { get; set; }             // "0" или "1"
