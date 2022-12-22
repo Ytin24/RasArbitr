@@ -1,5 +1,3 @@
-using RasArbitrCore.API;
-using RasArbitrWPF.Model;
 using System.Windows;
 
 namespace RasArbitrWPF.ViewModel;

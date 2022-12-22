@@ -5,8 +5,9 @@ namespace RasArbitrCore;
 
 public static class RasWeb
 {
-    public struct Cookies
+    public class Cookies
     {
+        public DateTime Expired; //надо реализовать таймер обновления коков
         public string Wasm;
         public string Pr_fp;
     }
@@ -14,6 +15,7 @@ public static class RasWeb
     public static async Task<Cookies> GetCookies()
     {
         string? wasm, pr_fp;
+        DateTime ExpiredDate;
         string url = "https://ras.arbitr.ru/";
         bool failed;
 
@@ -34,6 +36,7 @@ public static class RasWeb
 
                 wasm = kadCookies.First(c => c.Name == "wasm").Value;
                 pr_fp = kadCookies.First(c => c.Name == "pr_fp").Value;
+                ExpiredDate = (DateTime)kadCookies.First(c => c.Name == "wasm").Expires;
 
                 // Проверка на валидность //
                 failed = wasm is null || pr_fp is null;
@@ -47,7 +50,8 @@ public static class RasWeb
             var cookies = new Cookies
             {
                 Wasm = wasm,
-                Pr_fp = pr_fp
+                Pr_fp = pr_fp,
+                Expired = ExpiredDate,
             };
 
             return cookies;
