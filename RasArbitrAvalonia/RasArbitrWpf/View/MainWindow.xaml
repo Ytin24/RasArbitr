@@ -1,0 +1,211 @@
+﻿<Window x:Class="RasArbitrWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RasArbitrWPF"
+        xmlns:vm="clr-namespace:RasArbitrWPF.ViewModel"
+        mc:Ignorable="d"
+        Title="KolhoZ" Height="800" Width="1200"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" 
+        WindowState="{Binding WindowState}"
+        Background="#1e1e1e" >
+
+    <Window.DataContext>
+        <vm:MainWindowVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="25" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#4F4F4F"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Border BorderThickness="1" BorderBrush="#dbba04">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--TitleBar-->
+            <Grid Grid.ColumnSpan="2">
+                <Border BorderThickness="0" Background="#1e1e1e" MouseLeftButtonDown="Title_MouseLeftButtonDown" >
+                    <Grid>
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch" >
+                    <Image Source="Assets/KolhoZ.png" HorizontalAlignment="Center" Height="20" Width="20"/>
+                    <TextBlock Text="KolhoZ_Parser" FontSize="16" Foreground="white" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button  x:Name="Minimize" Padding="0" Height="25" Width="25" Command="{Binding Path=TitleBarButtons_Click}" CommandParameter="Minimize" >
+                        <Image Source="Assets\Minimize.png"></Image>
+                    </Button>
+                            <Button x:Name="Unwrap" Padding="0" Height="25" Width="25"  Command="{Binding Path=TitleBarButtons_Click}" CommandParameter="Unwrap" >
+                        <Image Source="Assets/Unwrap.png"></Image>
+                    </Button>
+                            <Button x:Name="Exit" Padding="0" Height="25" Width="25"  Command="{Binding Path=TitleBarButtons_Click}" CommandParameter="Exit">
+                        <Image Source="Assets/Exit.png"></Image>
+                    </Button>
+                </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            <!--EndTitleBar-->
+            <!--Menu-->
+            <ScrollViewer Grid.Row="1" Grid.RowSpan="2"  Grid.Column="0">
+                <StackPanel >
+                    <!--1-->
+                    <StackPanel HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,10" HorizontalAlignment="Left">
+                            <Image Source="Assets/text.png" Height="20" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Текст документа</TextBlock>
+                        </StackPanel>
+                        <TextBox x:Name="txtTextDoc" Style="{DynamicResource TextBoxStyle}" Width="250"/>
+
+                        <Separator Opacity="1" Background="#dbba04" Width="200" Height="2" Margin="0,10,0,20"></Separator>
+                    </StackPanel>
+                    <!--1-->
+                    <!--2-->
+                    <StackPanel HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Left">
+                            <Image Source="Assets/open-magazine.png" Height="20" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Вид спора</TextBlock>
+                        </StackPanel>
+                        <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="250"  Background="#dbba04"></ComboBox>
+                        <Separator Opacity="1" Background="#dbba04" Width="180" Height="2" Margin="0,10,0,20"></Separator>
+                    </StackPanel>
+                    <!--2-->
+                    <!--3-->
+                    <StackPanel HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Left">
+                            <Image Source="Assets/book-closed-with-label.png" Height="20" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Категория спора</TextBlock>
+                        </StackPanel>
+                        <ComboBox Style="{DynamicResource ComboBoxStyle}"  Width="250"  Background="#dbba04"></ComboBox>
+                        <Separator Opacity="1" Background="#dbba04" Width="160" Height="2" Margin="0,10,0,20"></Separator>
+                    </StackPanel>
+                    <!--3-->
+                    <!--4-->
+                    <StackPanel HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Left">
+                            <Image Source="Assets/group.png" Height="20" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Участник дела</TextBlock>
+                        </StackPanel>
+                        <TextBox Width="250" Style="{DynamicResource TextBoxStyle}"></TextBox>
+                        <Separator Opacity="1" Background="#dbba04" Width="140" Height="2" Margin="0,10,0,20"></Separator>
+                    </StackPanel>
+                    <!--4-->
+                    <!--5-->
+                    <StackPanel HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Left">
+                            <Image Source="Assets/court.png" Height="20" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Суд</TextBlock>
+                        </StackPanel>
+                        <ComboBox Width="250" Style="{DynamicResource ComboBoxStyle}"  Background="#dbba04"></ComboBox>
+                        <Separator Opacity="1" Background="#dbba04" Width="120" Height="2" Margin="0,10,0,20"></Separator>
+                    </StackPanel>
+                    <!--5-->
+                    <!--6-->
+                    <StackPanel HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Left">
+                            <Image Source="Assets/folder.png" Height="20" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Номер дела</TextBlock>
+                        </StackPanel>
+                        <TextBox Width="250" Style="{DynamicResource TextBoxStyle}" ></TextBox>
+                        <Separator Opacity="1" Background="#dbba04" Width="100" Height="2" Margin="0,10,0,20"></Separator>
+                    </StackPanel>
+                    <!--6-->
+                    <!--7-->
+                    <StackPanel HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="10,10,0,10" HorizontalAlignment="Left">
+                            <Image Source="Assets/calendar.png" Height="20" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Период поиска</TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Foreground="Gray" Margin="10,0,0,5"> от</TextBlock>
+                            <DatePicker Width="250" Height="25"></DatePicker>
+                            <Separator Opacity="1" Background="#dbba04" Width="80" Height="2" Margin="0,10,0,0"></Separator>
+                            <TextBlock Foreground="Gray" Margin="10,10,0,5"> до</TextBlock>
+                            <DatePicker></DatePicker>
+                        </StackPanel>
+                        <Separator Opacity="1" Background="#dbba04" Width="60" Height="2" Margin="0,10,0,20"></Separator>
+                    </StackPanel>
+                    <!--7-->
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Style="{DynamicResource RoundedButtonStyle}"  Height="50" Width="200" Content="Запросить" Margin="0,30,0,50" Background="#dbba04" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >
+
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+            <Rectangle Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Height="20" Width="320" VerticalAlignment="Bottom" Fill="#dbba04"></Rectangle>
+            <!--EndMenu-->
+
+            <StackPanel  Grid.Row="1" Grid.Column="2" Orientation="Horizontal"   HorizontalAlignment="Right" VerticalAlignment="Center">
+                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0"></ComboBox>
+                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0"></ComboBox>
+                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0"></ComboBox>
+            </StackPanel>
+            <!--EndTopMain-->
+            <!--Main-->
+
+            <Border  Grid.Row="2" Grid.Column="3"  Background="Transparent">
+                <Grid Background="#393939" Margin="15"></Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
