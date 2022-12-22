@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="View\Assets\book-closed-with-label.png" />
+    <None Remove="View\Assets\calendar.png" />
+    <None Remove="View\Assets\court.png" />
+    <None Remove="View\Assets\Exit.png" />
+    <None Remove="View\Assets\folder.png" />
+    <None Remove="View\Assets\group.png" />
+    <None Remove="View\Assets\KolhoZ.png" />
+    <None Remove="View\Assets\Minimize.png" />
+    <None Remove="View\Assets\open-magazine.png" />
+    <None Remove="View\Assets\text.png" />
+    <None Remove="View\Assets\Unwrap.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\Assets\calendar.png" />
+    <Resource Include="View\Assets\court.png" />
+    <Resource Include="View\Assets\Exit.png" />
+    <Resource Include="View\Assets\folder.png" />
+    <Resource Include="View\Assets\group.png" />
+    <Resource Include="View\Assets\KolhoZ.png" />
+    <Resource Include="View\Assets\Minimize.png" />
+    <Resource Include="View\Assets\open-magazine.png" />
+    <Resource Include="View\Assets\text.png" />
+    <Resource Include="View\Assets\Unwrap.png" />
+  </ItemGroup>
+
+</Project>

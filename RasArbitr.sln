@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RasArbitrCore", "RasArbitrC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RasArbitrAvalonia", "RasArbitrAvalonia\RasArbitrAvalonia.csproj", "{B159BF40-3E6A-4B79-A52F-EE56435F7277}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RasArbitrWPF", "..\..\..\Desktop\RasArbitrWpf\RasArbitrWPF.csproj", "{33508841-2171-4928-B72D-E20C35043DFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RasArbitrWPF", "RasArbitrWpf\RasArbitrWPF.csproj", "{6C40C1E5-6374-4218-8BC3-0EAF3286E961}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{B159BF40-3E6A-4B79-A52F-EE56435F7277}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B159BF40-3E6A-4B79-A52F-EE56435F7277}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B159BF40-3E6A-4B79-A52F-EE56435F7277}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33508841-2171-4928-B72D-E20C35043DFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33508841-2171-4928-B72D-E20C35043DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33508841-2171-4928-B72D-E20C35043DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33508841-2171-4928-B72D-E20C35043DFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C40C1E5-6374-4218-8BC3-0EAF3286E961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C40C1E5-6374-4218-8BC3-0EAF3286E961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C40C1E5-6374-4218-8BC3-0EAF3286E961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C40C1E5-6374-4218-8BC3-0EAF3286E961}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
