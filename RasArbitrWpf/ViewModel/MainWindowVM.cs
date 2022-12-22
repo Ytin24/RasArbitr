@@ -1,5 +1,7 @@
 using RasArbitrCore.API;
 using RasArbitrCore.Model;
+
+using System.Collections.Generic;
 using System.Windows;
 
 namespace RasArbitrWPF.ViewModel;
@@ -65,6 +67,7 @@ public class MainWindowVM : ViewModel
         }
     }
 
+    // ТЕСТ //
     private ExecCommand searchCommand;
     public ExecCommand SearchCommand
     {
@@ -75,10 +78,10 @@ public class MainWindowVM : ViewModel
                 {
                     MessageBox.Show($"Text: {request.Text}\n" +
                         $"Вид Спора: {selectedType}\n" +
-                        $"Категория спора: {request.StatDisputeCategory}\n" +
+                        $"Категория спора: {selectedCategory}\n" +
                         $"Участник дела: {Side.Name}\n" +
                         $"Суд: {selectedCourt}\n" +
-                        //$"Дело: {Case}\n" +
+                        $"Дело: {Case}\n" +
                         $"Дата от: {request.DateFrom.ToString()}\n" +
                         $"Дата до: {request.DateTo.ToString()}\n");
                 }));
@@ -128,5 +131,26 @@ public class MainWindowVM : ViewModel
         set => selectedType = types.GetCode(value);
     }
 
+    // Категории споров //
+    private StatDisputeCategoryCodes categories = new();
+    public StatDisputeCategoryCodes Categories
+    {
+        get => categories;
+    }
+
+    private string selectedCategory = string.Empty;
+    public string SelectedCategory
+    {
+        get => selectedCategory;
+        set => selectedCategory = categories.GetCode(value);
+    }
+
+    // Номер дела //
+    private List<string> cases = new() { string.Empty };
+    public string Case
+    {
+        get => cases[0];
+        set => cases.Insert(0, value);
+    }
     #endregion
 }
