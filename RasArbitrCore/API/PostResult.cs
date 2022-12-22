@@ -21,11 +21,11 @@
         public class ItemData
         {
             public string? Id { get; set; }
-            public string? CaseId { get; set; }
+            public string? CaseId { get; set; } // kad.arbitr.ru/Card/{CaseId}
             public string? RegistrationDate { get; set; }
             public string? InstanceNumber { get; set; }
             public string? CaseNumber { get; set; }
-            public string? FileName { get; set; }
+            public string? FileName { get; set; } // kad.arbitr.ru/Document/Pdf/{CaseId}/{Id}/{FileName}
             public int InstanceLevel { get; set; }
             public string? Court { get; set; }
             public string? TypeId { get; set; }
@@ -48,10 +48,10 @@
             public DateTime DateCheck { get; set; }
             public DateTime DateValidUntil { get; set; }
             public DateTime EffectiveDate { get; set; }
-            public object? OwnerEmail { get; set; }
-            public object? OwnerAddress { get; set; }
+            public string? OwnerEmail { get; set; } // string ???
+            public string? OwnerAddress { get; set; } // string ???
             public string? Issuer { get; set; }
-            public object? VerifyErrorMessage { get; set; }
+            public string? VerifyErrorMessage { get; set; } // string ???
             public int SignatureId { get; set; }
             public string? EffectiveDateString { get; set; }
             public string? DateValidUntilString { get; set; }

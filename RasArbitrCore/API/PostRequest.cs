@@ -10,6 +10,11 @@
         public List<string>? Courts { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
+
+        public List<string>? InstanceType { get; set; }     // От "1" до "13"
+        public string? IsFinished { get; set; }             // "0" или "1"
+        public List<string>? DocYears { get; set; }         // Год в виде string
+
         public List<Side>? Sides { get; set; }
         public List<string>? Judges { get; set; }
         public List<string>? Cases { get; set; }
