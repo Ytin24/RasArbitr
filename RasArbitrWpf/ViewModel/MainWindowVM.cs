@@ -1,3 +1,5 @@
+using RasArbitrCore.API;
+using RasArbitrWPF.Model;
 using System.Windows;
 
 namespace RasArbitrWPF.ViewModel;
@@ -62,4 +64,21 @@ public class MainWindowVM : ViewModel
                 }));
         }
     }
+
+    public MainWindowVM()
+    {
+        Request = new PostRequest();
+    }
+
+    #region RequestVM
+
+    private PostRequest request;
+    public PostRequest Request
+    {
+        get => request;
+        set => Set(ref request, value);
+    }
+
+    private CourtsCodes court;
+    #endregion
 }

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
@@ -19,6 +19,10 @@
     <None Remove="View\Assets\open-magazine.png" />
     <None Remove="View\Assets\text.png" />
     <None Remove="View\Assets\Unwrap.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RasArbitrCore\RasArbitrCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>
