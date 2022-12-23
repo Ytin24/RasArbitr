@@ -86,6 +86,12 @@ public class MainWindowVM : ViewModel
         get=> enabled;
     }
 
+    private string btnStatus = "Запросить";
+    public string BtnStatus
+    {
+        get => btnStatus;
+    }
+
     private ExecCommand searchCommand;
     public ExecCommand SearchCommand
     {
@@ -141,18 +147,17 @@ public class MainWindowVM : ViewModel
                 }, o => enabled));
         }
     }
-    private async Task<bool> GetData(PostRequest Body) {
+    private async Task GetData(PostRequest Body) {
         TestSource.Clear();
         var cookies = await RasWeb.GetCookies();
         var json = JsonConvert.SerializeObject(Body, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
         PostResult RawData = await RasApi.Post(json, cookies);
-        if (RawData.Success == false) return false;
+        if (RawData.Success == false) return;
         foreach(var data in RawData.Result.Items) {
             var d = new ItemAnswerView(data);
             TestSource.Add(d);
             //TestSource.Add(data.Type);
         }
-        return true;
     }
     private ItemAnswerView _itemAnswerViewSelected;
     public ItemAnswerView itemAnswerViewSelected{
@@ -273,12 +278,6 @@ private ObservableCollection<ItemAnswerView> _TestSource = new();
         set => selectedYear = value;
     }
     #endregion
-
-    private string btnStatus = "Запросить";
-    public string BtnStatus
-    {
-        get => btnStatus;
-    }
 
     private ExecCommand itemSelectCommand;
     public ExecCommand ItemSelectCommand
