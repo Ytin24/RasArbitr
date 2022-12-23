@@ -1,15 +1,16 @@
-using CefSharp.DevTools.CSS;
 using Newtonsoft.Json;
+
 using RasArbitrCore;
 using RasArbitrCore.API;
 using RasArbitrCore.Model;
 using RasArbitrWPF.UC;
-using System;
+
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.TextFormatting;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
 using WPFCustomMessageBox;
 
 namespace RasArbitrWPF.ViewModel;
@@ -81,7 +82,23 @@ public class MainWindowVM : ViewModel
     private bool enabled = true;
     public bool Enabled
     {
-        get=> enabled;
+        get => enabled;
+        set
+        {
+            enabled = value;
+            OnPropertyChanged("Enabled");
+        }
+    }
+
+    private string btnStatus = "Запросить";
+    public string BtnStatus
+    {
+        get => btnStatus;
+        set
+        {
+            btnStatus = value;
+            OnPropertyChanged("BtnStatus");
+        }
     }
 
     private ExecCommand searchCommand;
@@ -92,32 +109,38 @@ public class MainWindowVM : ViewModel
             return searchCommand ??
                 (searchCommand = new ExecCommand(async o =>
                 {
-                    enabled = false;
-                    btnStatus = "Ожидайте";
+                    Enabled = false;
+                    BtnStatus = "Ожидайте";
                     await Task.Delay(1);
 
                     List<PostRequest.Side> sides = new();
-                    foreach(var side in Sides.ItemText) {
-                        if (side != "") {
-                            sides.Add(new() {
+                    foreach (var side in Sides.ItemText)
+                    {
+                        if (side != "")
+                        {
+                            sides.Add(new()
+                            {
                                 Name = side,
                                 Type = -1,
                                 ExactMatch = false,
                             });
-                        } 
+                        }
                     }
                     List<string> cases = new();
-                    foreach (var @case in Cases.ItemText) {
-                        if (@case != "") {
+                    foreach (var @case in Cases.ItemText)
+                    {
+                        if (@case != "")
+                        {
                             cases.Add(@case);
                         }
                     }
-                    PostRequest PostRequestbody = new() {
+                    PostRequest PostRequestbody = new()
+                    {
                         Text = request.Text,
 
                         Cases = cases,
                         Sides = sides,
-                        
+
                         DateFrom = request.DateFrom,
                         DateTo = request.DateTo,
 
@@ -131,37 +154,44 @@ public class MainWindowVM : ViewModel
                     if (selectedInstType != "") PostRequestbody.InstanceType = new() { selectedInstType };
 
                     await GetData(PostRequestbody);
-                    btnStatus = "Успешно!";
+                    BtnStatus = "Успешно!";
                     await Task.Delay(1000);
 
-                    btnStatus = "Запросить";
-                    enabled = true;
+                    BtnStatus = "Запросить";
+                    Enabled = true;
                 }, o => enabled));
         }
     }
-    private async void GetData(PostRequest Body) {
-        itemAnswerViews.Clear();
+    private async Task GetData(PostRequest Body)
+    {
         TestSource.Clear();
         var cookies = await RasWeb.GetCookies();
         var json = JsonConvert.SerializeObject(Body, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+        await Task.Delay(3000);
+
         PostResult RawData = await RasApi.Post(json, cookies);
         if (RawData.Success == false) return;
-        foreach(var data in RawData.Result.Items) {
+        foreach (var data in RawData.Result.Items)
+        {
             var d = new ItemAnswerView(data);
             TestSource.Add(d);
             //TestSource.Add(data.Type);
         }
     }
     private ItemAnswerView _itemAnswerViewSelected;
-    public ItemAnswerView itemAnswerViewSelected{
+    public ItemAnswerView itemAnswerViewSelected
+    {
         get => _itemAnswerViewSelected;
         set => Set(ref _itemAnswerViewSelected, value);
-}
-private ObservableCollection<ItemAnswerView> _TestSource = new();
-    public ObservableCollection<ItemAnswerView> TestSource {
+    }
+    private ObservableCollection<ItemAnswerView> _TestSource = new();
+    public ObservableCollection<ItemAnswerView> TestSource
+    {
         get => _TestSource;
         set => Set(ref _TestSource, value);
     }
+
     #region RequestVM
 
 
@@ -272,12 +302,6 @@ private ObservableCollection<ItemAnswerView> _TestSource = new();
     }
     #endregion
 
-    private string btnStatus = "Запросить";
-    public string BtnStatus
-    {
-        get => btnStatus;
-    }
-
     private ExecCommand itemSelectCommand;
     public ExecCommand ItemSelectCommand
     {
@@ -298,12 +322,14 @@ private ObservableCollection<ItemAnswerView> _TestSource = new();
             "Выберите действие",
             "Открыть документ",
             "Перейти на сайт");
-        if(result == MessageBoxResult.OK) {
+        if (result == MessageBoxResult.OK)
+        {
             //Process.Start("explorer.exe", await RasApi.DowloadFile(itemAnswerViewSelected));
             Process.Start("explorer.exe", itemAnswerViewSelected.FileName.ToString());
         }
-        else {
-            Process.Start("explorer.exe",itemAnswerViewSelected.CaseId.ToString());
+        else
+        {
+            Process.Start("explorer.exe", itemAnswerViewSelected.CaseId.ToString());
         }
     }
 }
