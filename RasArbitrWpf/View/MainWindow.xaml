@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:RasArbitrWPF"
         xmlns:UC="clr-namespace:RasArbitrWPF.UC"
         xmlns:vm="clr-namespace:RasArbitrWPF.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="KolhoZ" Height="800" Width="1200"
         ResizeMode="NoResize"
@@ -217,6 +218,13 @@
                                 <Setter Property="ListBoxItem.Padding" Value="5"/>
                             </Style>
                         </ListBox.ItemContainerStyle>
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction
+                                    Command="{Binding Path=ItemSelectCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </ListBox>
                 </Grid>
             </Border>
