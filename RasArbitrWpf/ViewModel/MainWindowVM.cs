@@ -7,6 +7,8 @@ using RasArbitrWPF.UC;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.TextFormatting;
@@ -139,18 +141,18 @@ public class MainWindowVM : ViewModel
                 }, o => enabled));
         }
     }
-    private async void GetData(PostRequest Body) {
-        itemAnswerViews.Clear();
+    private async Task<bool> GetData(PostRequest Body) {
         TestSource.Clear();
         var cookies = await RasWeb.GetCookies();
         var json = JsonConvert.SerializeObject(Body, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
         PostResult RawData = await RasApi.Post(json, cookies);
-        if (RawData.Success == false) return;
+        if (RawData.Success == false) return false;
         foreach(var data in RawData.Result.Items) {
             var d = new ItemAnswerView(data);
             TestSource.Add(d);
             //TestSource.Add(data.Type);
         }
+        return true;
     }
     private ItemAnswerView _itemAnswerViewSelected;
     public ItemAnswerView itemAnswerViewSelected{
