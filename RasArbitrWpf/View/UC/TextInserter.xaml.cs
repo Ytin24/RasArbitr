@@ -98,7 +98,7 @@ namespace RasArbitrWPF.UC {
             ButtonAddOrRemove.Click += RemoveItem;
 
             var ItemTextBox = new TextBox() {
-                Width = 190,
+                Width = 230,
                 Height = 20,
             };
             ItemTextBox.TextChanged += TbTextInput;
