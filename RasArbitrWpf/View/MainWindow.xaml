@@ -181,10 +181,10 @@
                             <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Период поиска</TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Foreground="Gray" Margin="10,0,0,5"> от</TextBlock>
+                            <TextBlock Foreground="Gray" Margin="4,0,0,5"> от</TextBlock>
                             <DatePicker Width="250" Height="25" SelectedDate="{Binding Path=Request.DateFrom}"></DatePicker>
                             <Separator Opacity="1" Background="#dbba04" Width="80" Height="2" Margin="0,10,0,0"></Separator>
-                            <TextBlock Foreground="Gray" Margin="10,10,0,5"> до</TextBlock>
+                            <TextBlock Foreground="Gray" Margin="4,10,0,5"> до</TextBlock>
                             <DatePicker SelectedDate="{Binding Path=Request.DateTo}"></DatePicker>
                         </StackPanel>
                         <Separator Opacity="1" Background="#dbba04" Width="60" Height="2" Margin="0,10,0,20"></Separator>
@@ -219,7 +219,7 @@
                         <ListBox.ItemContainerStyle>
                             <Style>
                                 <Setter Property="ListBoxItem.Background" Value="#1e1e1e"/>
-                                <Setter Property="ListBoxItem.Margin" Value="5"/>
+                                <Setter Property="ListBoxItem.Margin" Value="5, 5, 14, 5"/>
                                 <Setter Property="ListBoxItem.Padding" Value="5"/>
                             </Style>
                         </ListBox.ItemContainerStyle>
