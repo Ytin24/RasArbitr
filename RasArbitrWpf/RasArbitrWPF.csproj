@@ -16,7 +16,9 @@
     <None Remove="View\Assets\group.png" />
     <None Remove="View\Assets\KolhoZ.png" />
     <None Remove="View\Assets\Minimize.png" />
+    <None Remove="View\Assets\minus.png" />
     <None Remove="View\Assets\open-magazine.png" />
+    <None Remove="View\Assets\plus.png" />
     <None Remove="View\Assets\text.png" />
     <None Remove="View\Assets\Unwrap.png" />
   </ItemGroup>
@@ -33,7 +35,9 @@
     <Resource Include="View\Assets\group.png" />
     <Resource Include="View\Assets\KolhoZ.png" />
     <Resource Include="View\Assets\Minimize.png" />
+    <Resource Include="View\Assets\minus.png" />
     <Resource Include="View\Assets\open-magazine.png" />
+    <Resource Include="View\Assets\plus.png" />
     <Resource Include="View\Assets\text.png" />
     <Resource Include="View\Assets\Unwrap.png" />
   </ItemGroup>

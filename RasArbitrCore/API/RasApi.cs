@@ -4,7 +4,7 @@ namespace RasArbitrCore.API
 {
     public static class RasApi
     {
-        public static async Task<PostResult?> Post(PostRequest requestBody, RasWeb.Cookies cookies)
+        public static async Task<PostResult?> Post(string Json, RasWeb.Cookies cookies)
         {
             string url = "https://ras.arbitr.ru/";
             var client = new RestClient(url);
@@ -14,7 +14,7 @@ namespace RasArbitrCore.API
             client.AddDefaultHeader("cookie", rasCookies);
             client.AddDefaultHeader("referer", url);
             client.AddDefaultHeader("x-requested-with", "XMLHttpRequest");
-            request.AddJsonBody(requestBody);
+            request.AddJsonBody(Json);
 
             var result = await client.PostAsync(request);
 

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RasArbitrWPF"
+        xmlns:UC="clr-namespace:RasArbitrWPF.UC"
         xmlns:vm="clr-namespace:RasArbitrWPF.ViewModel"
         mc:Ignorable="d"
         Title="KolhoZ" Height="800" Width="1200"
@@ -125,7 +126,7 @@
                             <Image Source="Assets/open-magazine.png" Height="20" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Вид спора</TextBlock>
                         </StackPanel>
-                        <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="250"  Background="#dbba04" ItemsSource="{Binding Path=Types.Names}" SelectedItem="{Binding Path=SelectedType}"></ComboBox>
+                        <ComboBox Style="{DynamicResource ComboBoxStyle}" SelectedIndex="0" Width="250"  Background="#dbba04" ItemsSource="{Binding Path=Types.Names}" SelectedItem="{Binding Path=SelectedType}"></ComboBox>
                         <Separator Opacity="1" Background="#dbba04" Width="180" Height="2" Margin="0,10,0,20"></Separator>
                     </StackPanel>
                     <!--2-->
@@ -135,7 +136,7 @@
                             <Image Source="Assets/book-closed-with-label.png" Height="20" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Категория спора</TextBlock>
                         </StackPanel>
-                        <ComboBox Style="{DynamicResource ComboBoxStyle}"  Width="250"  Background="#dbba04" ItemsSource="{Binding Path=Categories.Names}" SelectedItem="{Binding Path=SelectedCategory}"></ComboBox>
+                        <ComboBox Style="{DynamicResource ComboBoxStyle}" SelectedIndex="0"  Width="250"  Background="#dbba04" ItemsSource="{Binding Path=Categories.Names}" SelectedItem="{Binding Path=SelectedCategory}"></ComboBox>
                         <Separator Opacity="1" Background="#dbba04" Width="160" Height="2" Margin="0,10,0,20"></Separator>
                     </StackPanel>
                     <!--3-->
@@ -145,7 +146,8 @@
                             <Image Source="Assets/group.png" Height="20" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Участник дела</TextBlock>
                         </StackPanel>
-                        <TextBox Width="250" Style="{DynamicResource TextBoxStyle}" Text="{Binding Path=Side.Name}"></TextBox>
+                        <UC:TextInserter x:Name="Sides" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <!--<TextBox Width="250" Style="{DynamicResource TextBoxStyle}" Text="{Binding Path=Side.Name}"></TextBox>-->
                         <Separator Opacity="1" Background="#dbba04" Width="140" Height="2" Margin="0,10,0,20"></Separator>
                     </StackPanel>
                     <!--4-->
@@ -155,7 +157,7 @@
                             <Image Source="Assets/court.png" Height="20" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Суд</TextBlock>
                         </StackPanel>
-                        <ComboBox Width="250" Style="{DynamicResource ComboBoxStyle}"  Background="#dbba04" ItemsSource="{Binding Path=Courts.Names}" SelectedItem="{Binding Path=SelectedCourt}"></ComboBox>
+                        <ComboBox Width="250" Style="{DynamicResource ComboBoxStyle}" SelectedIndex="0"  Background="#dbba04" ItemsSource="{Binding Path=Courts.Names}" SelectedItem="{Binding Path=SelectedCourt}"></ComboBox>
                         <Separator Opacity="1" Background="#dbba04" Width="120" Height="2" Margin="0,10,0,20"></Separator>
                     </StackPanel>
                     <!--5-->
@@ -164,8 +166,10 @@
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Left">
                             <Image Source="Assets/folder.png" Height="20" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Gray" VerticalAlignment="Center" FontSize="16">Номер дела</TextBlock>
+                            
                         </StackPanel>
-                        <TextBox Width="250" Style="{DynamicResource TextBoxStyle}" Text="{Binding Path=Case}"></TextBox>
+                        <UC:TextInserter x:Name="Cases" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <!--<TextBox Width="250" Style="{DynamicResource TextBoxStyle}" Text="{Binding Path=Case}"></TextBox>-->
                         <Separator Opacity="1" Background="#dbba04" Width="100" Height="2" Margin="0,10,0,20"></Separator>
                     </StackPanel>
                     <!--6-->
@@ -196,15 +200,17 @@
             <!--EndMenu-->
 
             <StackPanel  Grid.Row="1" Grid.Column="2" Orientation="Horizontal"   HorizontalAlignment="Right" VerticalAlignment="Center">
-                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0" ItemsSource="{Binding Path=InstanceTypes.Names}" SelectedItem="{Binding Path=SelectedInstType}"></ComboBox>
-                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0" ItemsSource="{Binding Path=Statuses.Names}" SelectedItem="{Binding Path=IsFinished}"></ComboBox>
-                <ComboBox Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0" ItemsSource="{Binding Path=Years.DocYears}" SelectedItem="{Binding Path=SelectedYear}"></ComboBox>
+                <ComboBox SelectedIndex="0" Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0" ItemsSource="{Binding Path=InstanceTypes.Names}" SelectedItem="{Binding Path=SelectedInstType}"></ComboBox>
+                <ComboBox SelectedIndex="0" Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0" ItemsSource="{Binding Path=Statuses.Names}" SelectedItem="{Binding Path=IsFinished}"></ComboBox>
+                <ComboBox SelectedIndex="0" Style="{DynamicResource ComboBoxStyle}" Width="200" Background="#dbba04" Margin="0,0,5,0" ItemsSource="{Binding Path=Years.DocYears}" SelectedItem="{Binding Path=SelectedYear}"></ComboBox>
             </StackPanel>
             <!--EndTopMain-->
             <!--Main-->
 
             <Border  Grid.Row="2" Grid.Column="3"  Background="Transparent">
-                <Grid Background="#393939" Margin="15"></Grid>
+                <Grid  Margin="15">
+                    <ListBox Background="#393939" BorderThickness="0" ItemsSource="{Binding TestSource}"/>
+                </Grid>
             </Border>
         </Grid>
     </Border>

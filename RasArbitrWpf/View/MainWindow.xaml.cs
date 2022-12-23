@@ -11,6 +11,8 @@ namespace RasArbitrWPF {
             InitializeComponent();
             var vm = this.DataContext as MainWindowVM;
             vm.Close += () => this.Close();
+            vm.Cases = Cases;
+            vm.Sides = Sides;
         }
 
         private void Title_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e) 

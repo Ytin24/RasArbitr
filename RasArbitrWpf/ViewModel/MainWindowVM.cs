@@ -1,6 +1,9 @@
+using Newtonsoft.Json;
+using RasArbitrCore;
 using RasArbitrCore.API;
 using RasArbitrCore.Model;
-
+using RasArbitrWPF.UC;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -67,6 +70,8 @@ public class MainWindowVM : ViewModel
         }
     }
 
+    public TextInserter Sides { get; set; }
+    public TextInserter Cases { get; set; }
     // ТЕСТ //
     private ExecCommand searchCommand;
     public ExecCommand SearchCommand
@@ -76,25 +81,66 @@ public class MainWindowVM : ViewModel
             return searchCommand ??
                 (searchCommand = new ExecCommand(o =>
                 {
-                    MessageBox.Show($"Text: {request.Text}\n" +
-                        $"Вид Спора: {selectedType}\n" +
-                        $"Категория спора: {selectedCategory}\n" +
-                        $"Участник дела: {Side.Name}\n" +
-                        $"Суд: {selectedCourt}\n" +
-                        $"Дело: {Case}\n" +
-                        $"Дата от: {request.DateFrom.ToString()}\n" +
-                        $"Дата до: {request.DateTo.ToString()}\n" +
+                    List<PostRequest.Side> sides = new();
+                    foreach(var side in Sides.ItemText) {
+                        if (side != "") {
+                            sides.Add(new() {
+                                Name = side,
+                                Type = -1,
+                                ExactMatch = false,
+                            });
+                        } 
+                    }
+                    List<string> cases = new();
+                    foreach (var @case in Cases.ItemText) {
+                        if (@case != "") {
+                            cases.Add(@case);
+                        }
+                    }
+                    PostRequest PostRequestbody = new() {
+                        Text = request.Text,
+                        
+                        Judges = new() {},
+                        Cases = cases,
+                        Sides = sides,
+                        
+                        DateFrom = request.DateFrom,
+                        DateTo = request.DateTo,
 
-                        "\n" +
-
-                        $"Тип Документа: {selectedInstType}\n" +
-                        $"Завершён: {isFinished}\n" +
-                        $"Год: {selectedYear}");
+                    };
+                    //DisputeTypes = new() { selectedType },
+                    //StatDisputeCategory = selectedCategory,
+                    // Courts = new() { SelectedCourt }
+                    if (selectedType != null) PostRequestbody.DisputeTypes = new() { selectedType };
+                    if (SelectedCategory != null) PostRequestbody.StatDisputeCategory = selectedCategory;
+                    if (SelectedCourt != "") PostRequestbody.Courts = new() { SelectedCourt };
+                    if (isFinished != null) PostRequestbody.IsFinished = isFinished;
+                    if (SelectedYear != null && SelectedYear != "") PostRequestbody.DocYears = new() { SelectedYear };
+                    if (SelectedInstType != null) PostRequestbody.InstanceType = new() { SelectedInstType };
+                    GetData(PostRequestbody);
                 }));
         }
     }
+    private async void GetData(PostRequest Body) {
 
+        var a = await RasWeb.GetCookies();
+        var json = JsonConvert.SerializeObject(Body, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+        //var sitejson = "{\"GroupByCase\":false,\"Count\":25,\"Page\":1,\"DateFrom\":\"2000-01-01T00:00:00\",\"DateTo\":\"2030-01-01T23:59:59\",\"Sides\":[],\"Judges\":[],\"Cases\":[],\"Text\":\"\"}";
+        //              {"GroupByCase":false,"Count":25,"Page":1,"DateFrom":"2000-01-01T00:00:00","DateTo":"2030-01-01T00:00:00","Sides":[],"Judges":[],"Cases":[],"Text":""}
+        //              {"GroupByCase":false,"Count":25,"Page":1,"DateFrom":"2000-01-01T00:00:00","DateTo":"2030-01-01T00:00:00","Sides":[{"Name":"","Type":-1,"ExactMatch":true}],"Judges":[],"Cases":[""]}
+        //var booleanjson = json == sitejson;
+        PostResult d = await RasApi.Post(json, a);
+        if (d.Result == null) return;
+        var e = new ItemAnswerView(d.Result.Items[0]);
+        TestSource.Add(e.FileName);
+    }
+    private List<Uri> _TestSource = new();
+    public List<Uri> TestSource {
+        get => _TestSource;
+        set => Set(ref _TestSource, value);
+    }
     #region RequestVM
+
 
     private PostRequest request = new();
     public PostRequest Request

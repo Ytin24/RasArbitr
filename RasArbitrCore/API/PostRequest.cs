@@ -18,7 +18,7 @@
         public List<Side>? Sides { get; set; }
         public List<string>? Judges { get; set; }
         public List<string>? Cases { get; set; }
-        public string? Text { get; set; }
+        public string? Text { get; set; } = "";
 
         public class Side
         {
