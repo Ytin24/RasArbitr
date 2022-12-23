@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="View\Assets\book-closed-with-label.png" />
+    <None Remove="View\Assets\book-closed.png" />
     <None Remove="View\Assets\calendar.png" />
     <None Remove="View\Assets\court.png" />
     <None Remove="View\Assets\Exit.png" />
@@ -38,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="View\Assets\book-closed.png" />
     <Resource Include="View\Assets\calendar.png" />
     <Resource Include="View\Assets\court.png" />
     <Resource Include="View\Assets\Exit.png" />
