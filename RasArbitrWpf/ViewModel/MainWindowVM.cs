@@ -297,7 +297,8 @@ private ObservableCollection<ItemAnswerView> _TestSource = new();
             return itemSelectCommand ??
                 (itemSelectCommand = new ExecCommand(o =>
                 {
-                    ShowTest();
+                    if (itemAnswerViewSelected != null)
+                        ShowTest();
                 }));
         }
     }
