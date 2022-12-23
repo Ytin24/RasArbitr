@@ -248,4 +248,22 @@ public class MainWindowVM : ViewModel
         set => selectedYear = value;
     }
     #endregion
+
+    private ExecCommand itemSelectCommand;
+    public ExecCommand ItemSelectCommand
+    {
+        get
+        {
+            return itemSelectCommand ??
+                (itemSelectCommand = new ExecCommand(o =>
+                {
+                    ShowTest();
+                }));
+        }
+    }
+
+    private void ShowTest()
+    {
+        MessageBox.Show("E");
+    }
 }
