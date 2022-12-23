@@ -84,12 +84,22 @@ public class MainWindowVM : ViewModel
     public bool Enabled
     {
         get=> enabled;
+        set
+        {
+            enabled = value;
+            OnPropertyChanged("Enabled");
+        }
     }
 
     private string btnStatus = "Запросить";
     public string BtnStatus
     {
         get => btnStatus;
+        set
+        {
+            btnStatus = value;
+            OnPropertyChanged("BtnStatus");
+        }
     }
 
     private ExecCommand searchCommand;
@@ -100,8 +110,8 @@ public class MainWindowVM : ViewModel
             return searchCommand ??
                 (searchCommand = new ExecCommand(async o =>
                 {
-                    enabled = false;
-                    btnStatus = "Ожидайте";
+                    Enabled = false;
+                    BtnStatus = "Ожидайте";
                     await Task.Delay(1);
 
                     List<PostRequest.Side> sides = new();
@@ -139,11 +149,11 @@ public class MainWindowVM : ViewModel
                     if (selectedInstType != "") PostRequestbody.InstanceType = new() { selectedInstType };
 
                     await GetData(PostRequestbody);
-                    btnStatus = "Успешно!";
+                    BtnStatus = "Успешно!";
                     await Task.Delay(1000);
 
-                    btnStatus = "Запросить";
-                    enabled = true;
+                    BtnStatus = "Запросить";
+                    Enabled = true;
                 }, o => enabled));
         }
     }
