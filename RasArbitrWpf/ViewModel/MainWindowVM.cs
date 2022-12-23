@@ -5,6 +5,7 @@ using RasArbitrCore.Model;
 using RasArbitrWPF.UC;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace RasArbitrWPF.ViewModel;
@@ -122,20 +123,21 @@ public class MainWindowVM : ViewModel
         }
     }
     private async void GetData(PostRequest Body) {
-
-        var a = await RasWeb.GetCookies();
+        itemAnswerViews.Clear();
+        TestSource.Clear();
+        var cookies = await RasWeb.GetCookies();
         var json = JsonConvert.SerializeObject(Body, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-        //var sitejson = "{\"GroupByCase\":false,\"Count\":25,\"Page\":1,\"DateFrom\":\"2000-01-01T00:00:00\",\"DateTo\":\"2030-01-01T23:59:59\",\"Sides\":[],\"Judges\":[],\"Cases\":[],\"Text\":\"\"}";
-        //              {"GroupByCase":false,"Count":25,"Page":1,"DateFrom":"2000-01-01T00:00:00","DateTo":"2030-01-01T00:00:00","Sides":[],"Judges":[],"Cases":[],"Text":""}
-        //              {"GroupByCase":false,"Count":25,"Page":1,"DateFrom":"2000-01-01T00:00:00","DateTo":"2030-01-01T00:00:00","Sides":[{"Name":"","Type":-1,"ExactMatch":true}],"Judges":[],"Cases":[""]}
-        //var booleanjson = json == sitejson;
-        PostResult d = await RasApi.Post(json, a);
-        if (d.Result == null) return;
-        var e = new ItemAnswerView(d.Result.Items[0]);
-        TestSource.Add(e.FileName);
+        PostResult RawData = await RasApi.Post(json, cookies);
+        if (RawData.Success == false) return;
+        foreach(var data in RawData.Result.Items) {
+            itemAnswerViews.Add(new ItemAnswerView(data));
+            TestSource.Add(data.Type);
+        }
+        
     }
-    private List<Uri> _TestSource = new();
-    public List<Uri> TestSource {
+    private List<ItemAnswerView> itemAnswerViews= new List<ItemAnswerView>();
+    private ObservableCollection<string> _TestSource = new();
+    public ObservableCollection<string> TestSource {
         get => _TestSource;
         set => Set(ref _TestSource, value);
     }
