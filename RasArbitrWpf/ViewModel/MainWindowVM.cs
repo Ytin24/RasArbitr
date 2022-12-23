@@ -1,3 +1,4 @@
+using CefSharp.DevTools.CSS;
 using Newtonsoft.Json;
 using RasArbitrCore;
 using RasArbitrCore.API;
@@ -6,8 +7,10 @@ using RasArbitrWPF.UC;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.TextFormatting;
+using WPFCustomMessageBox;
 
 namespace RasArbitrWPF.ViewModel;
 
@@ -136,7 +139,7 @@ public class MainWindowVM : ViewModel
                 }, o => enabled));
         }
     }
-    private async Task GetData(PostRequest Body) {
+    private async void GetData(PostRequest Body) {
         itemAnswerViews.Clear();
         TestSource.Clear();
         var cookies = await RasWeb.GetCookies();
@@ -144,13 +147,18 @@ public class MainWindowVM : ViewModel
         PostResult RawData = await RasApi.Post(json, cookies);
         if (RawData.Success == false) return;
         foreach(var data in RawData.Result.Items) {
-            itemAnswerViews.Add(new ItemAnswerView(data));
-            TestSource.Add(data.Type);
+            var d = new ItemAnswerView(data);
+            TestSource.Add(d);
+            //TestSource.Add(data.Type);
         }
     }
-    private List<ItemAnswerView> itemAnswerViews= new List<ItemAnswerView>();
-    private ObservableCollection<string> _TestSource = new();
-    public ObservableCollection<string> TestSource {
+    private ItemAnswerView _itemAnswerViewSelected;
+    public ItemAnswerView itemAnswerViewSelected{
+        get => _itemAnswerViewSelected;
+        set => Set(ref _itemAnswerViewSelected, value);
+}
+private ObservableCollection<ItemAnswerView> _TestSource = new();
+    public ObservableCollection<ItemAnswerView> TestSource {
         get => _TestSource;
         set => Set(ref _TestSource, value);
     }
@@ -283,8 +291,19 @@ public class MainWindowVM : ViewModel
         }
     }
 
-    private void ShowTest()
+    private async void ShowTest()
     {
-        MessageBox.Show("E");
+        MessageBoxResult result = CustomMessageBox.ShowOKCancel(
+            "Вы хотите открыть документ или перейти на сайт для подробной информации?",
+            "Выберите действие",
+            "Открыть документ",
+            "Перейти на сайт");
+        if(result == MessageBoxResult.OK) {
+            //Process.Start("explorer.exe", await RasApi.DowloadFile(itemAnswerViewSelected));
+            Process.Start("explorer.exe", itemAnswerViewSelected.FileName.ToString());
+        }
+        else {
+            Process.Start("explorer.exe",itemAnswerViewSelected.CaseId.ToString());
+        }
     }
 }

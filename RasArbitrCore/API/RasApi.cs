@@ -1,5 +1,9 @@
 ﻿using RestSharp;
 using Newtonsoft.Json;
+using CefSharp.DevTools.Network;
+using RasArbitrCore.Model;
+using System.Diagnostics;
+
 namespace RasArbitrCore.API
 {
     public static class RasApi
@@ -21,5 +25,15 @@ namespace RasArbitrCore.API
             return JsonConvert.DeserializeObject<PostResult>(result.Content);
 
         }
+        //public static async Task<string> DowloadFile(ItemAnswerView item) {
+        //    var path = Path.Combine(Environment.GetEnvironmentVariable("USERPROFILE"), $"Downloads\\KolhoZ_{item.File}");
+        //    var client = new RestClient(item.FileName);
+        //    var result = client.Get(new());
+        //    //var result = await client.DownloadStreamAsync(new RestRequest());
+        //    //var file = File.Create(path);
+        //    //await result.CopyToAsync(file);
+        //    return path;
+            
+        //}
     }
 }

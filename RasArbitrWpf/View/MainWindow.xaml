@@ -210,7 +210,12 @@
 
             <Border  Grid.Row="2" Grid.Column="3"  Background="Transparent">
                 <Grid  Margin="15">
-                    <ListBox  BorderThickness="0" Background="#393939" ItemsSource="{Binding TestSource, UpdateSourceTrigger=PropertyChanged}" Foreground="#dbba04" HorizontalContentAlignment="Center" FontSize="25" FontWeight="Bold">
+                    <ListBox  BorderThickness="0" Background="#393939" ItemsSource="{Binding TestSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding itemAnswerViewSelected}" Foreground="#dbba04" HorizontalContentAlignment="Center" FontSize="25" FontWeight="Bold">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Type}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                         <ListBox.ItemContainerStyle>
                             <Style>
                                 <Setter Property="ListBoxItem.Background" Value="#1e1e1e"/>
