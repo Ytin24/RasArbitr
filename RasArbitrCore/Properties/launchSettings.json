@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "RasArbitrCore": {
+      "commandName": "Project"
+    },
+    "Профиль 1": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\cekcy\\source\\repos\\RasArbitr2\\RasArbitrWpf"
+    }
+  }
+}

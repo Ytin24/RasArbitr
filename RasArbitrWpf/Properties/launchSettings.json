@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RasArbitrWPF": {
+      "commandName": "Project"
+    },
+    "Профиль 1": {
+      "commandName": "Project"
+    }
+  }
+}

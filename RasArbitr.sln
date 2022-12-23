@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasArbitrCore", "RasArbitrCore\RasArbitrCore.csproj", "{C968B7D0-F7F0-443A-8FFC-C5395F710752}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RasArbitrCore", "RasArbitrCore\RasArbitrCore.csproj", "{C968B7D0-F7F0-443A-8FFC-C5395F710752}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasArbitrAvalonia", "RasArbitrAvalonia\RasArbitrAvalonia.csproj", "{B159BF40-3E6A-4B79-A52F-EE56435F7277}"
-EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RasArbitrWPF", "RasArbitrWpf\RasArbitrWPF.csproj", "{6C40C1E5-6374-4218-8BC3-0EAF3286E961}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,5 +17,15 @@ Global
 		{C968B7D0-F7F0-443A-8FFC-C5395F710752}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C968B7D0-F7F0-443A-8FFC-C5395F710752}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C968B7D0-F7F0-443A-8FFC-C5395F710752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C40C1E5-6374-4218-8BC3-0EAF3286E961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C40C1E5-6374-4218-8BC3-0EAF3286E961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C40C1E5-6374-4218-8BC3-0EAF3286E961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C40C1E5-6374-4218-8BC3-0EAF3286E961}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0183B45-3E61-41D6-823B-BCB1E49CBA75}
 	EndGlobalSection
 EndGlobal
