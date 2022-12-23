@@ -1,4 +1,6 @@
-﻿namespace RasArbitrCore.API
+﻿using System.Collections;
+
+namespace RasArbitrCore.API
 {
     public class PostResult
     {
@@ -36,6 +38,7 @@
             public int SphinxId { get; set; }
             public int DocumentCount { get; set; }
             public List<SignatureInfoData>? SignatureInfo { get; set; }
+
         }
 
         public class SignatureInfoData

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:RasArbitrWPF"
         xmlns:UC="clr-namespace:RasArbitrWPF.UC"
         xmlns:vm="clr-namespace:RasArbitrWPF.ViewModel"
@@ -210,13 +209,14 @@
 
             <Border  Grid.Row="2" Grid.Column="3"  Background="Transparent">
                 <Grid  Margin="15">
-                    <ListBox Background="#393939" BorderThickness="0" ItemsSource="{Binding TestSource}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDoubleClick">
-                                <i:InvokeCommandAction
-                                    Command="{Binding Path=ItemSelectCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                    <ListBox  BorderThickness="0" Background="#393939" ItemsSource="{Binding TestSource, UpdateSourceTrigger=PropertyChanged}" Foreground="#dbba04" HorizontalContentAlignment="Center" FontSize="25" FontWeight="Bold">
+                        <ListBox.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="ListBoxItem.Background" Value="#1e1e1e"/>
+                                <Setter Property="ListBoxItem.Margin" Value="5"/>
+                                <Setter Property="ListBoxItem.Padding" Value="5"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
                     </ListBox>
                 </Grid>
             </Border>
