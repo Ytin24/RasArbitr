@@ -38,7 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="View\Assets\book-closed-with-label.png" />
     <Resource Include="View\Assets\calendar.png" />
     <Resource Include="View\Assets\court.png" />
     <Resource Include="View\Assets\Exit.png" />
