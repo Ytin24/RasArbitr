@@ -9,7 +9,6 @@ namespace RasArbitrCore.Model
         public string File { get; set; }
         public String Id { get; set; }
 
-        public String CourtName { get; set; }
         public String Type { get; set; }
 
         public ItemAnswerView(PostResult.ItemData Data)
@@ -19,7 +18,6 @@ namespace RasArbitrCore.Model
             FileName = new($"https://kad.arbitr.ru/Document/Pdf/{Data.CaseId}/{Data.Id}/{Data.FileName}");
             Id = Data.Id;
 
-            CourtName = Data.Court;
             Type = Data.Type;
         }
 
