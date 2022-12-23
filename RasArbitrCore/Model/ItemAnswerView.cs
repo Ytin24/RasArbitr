@@ -16,7 +16,7 @@ namespace RasArbitrCore.Model {
             CaseId= new($"https://kad.arbitr.ru/Card/{Data.CaseId}");
             File = Data.FileName;
             FileName = new($"https://kad.arbitr.ru/Document/Pdf/{Data.CaseId}/{Data.Id}/{Data.FileName}");
-            Type = Data.Type;
+            Type = Data.Type + " | " + Data.CaseNumber;
             Id = Data.Id;
         }
 

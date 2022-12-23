@@ -5,6 +5,7 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>KolhoZ.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +22,10 @@
     <None Remove="View\Assets\plus.png" />
     <None Remove="View\Assets\text.png" />
     <None Remove="View\Assets\Unwrap.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="KolhoZ.ico" />
   </ItemGroup>
 
   <ItemGroup>
