@@ -213,7 +213,10 @@
                     <ListBox  BorderThickness="0" Background="#393939" ItemsSource="{Binding TestSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding itemAnswerViewSelected}" Foreground="#dbba04" HorizontalContentAlignment="Center" FontSize="25" FontWeight="Bold">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Type}"/>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Path=CourtName}"/>
+                                    <TextBlock Text="{Binding Path=Type}"/>
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ListBox.ItemContainerStyle>
