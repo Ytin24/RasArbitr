@@ -302,7 +302,7 @@ private ObservableCollection<ItemAnswerView> _TestSource = new();
             //Process.Start("explorer.exe", await RasApi.DowloadFile(itemAnswerViewSelected));
             Process.Start("explorer.exe", itemAnswerViewSelected.FileName.ToString());
         }
-        else {
+        else if (result == MessageBoxResult.Cancel) {
             Process.Start("explorer.exe",itemAnswerViewSelected.CaseId.ToString());
         }
     }
