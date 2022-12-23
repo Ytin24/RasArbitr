@@ -191,7 +191,7 @@
                     </StackPanel>
                     <!--7-->
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Style="{DynamicResource RoundedButtonStyle}" Command="{Binding SearchCommand}" Height="50" Width="200" Content="Запросить" Margin="0,30,0,50" Background="#dbba04" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >
+                        <Button Style="{DynamicResource RoundedButtonStyle}" Command="{Binding SearchCommand}" Content="{Binding Path=BtnStatus}" IsEnabled="{Binding Path=Enabled, UpdateSourceTrigger=PropertyChanged}" Height="50" Width="200" Margin="0,30,0,50" Background="#dbba04" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >
 
                         </Button>
                     </StackPanel>

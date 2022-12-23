@@ -14,10 +14,11 @@ public static class RasWeb
 
     public static async Task<Cookies> GetCookies()
     {
-        string? wasm, pr_fp;
+        string? wasm = null, 
+                pr_fp = null;
         DateTime ExpiredDate;
         string url = "https://ras.arbitr.ru/";
-        bool failed;
+        bool failed = false;
 
         using (var browser = new ChromiumWebBrowser(url))
         {
@@ -34,16 +35,23 @@ public static class RasWeb
 
                 var kadCookies = await browser.GetCookieManager().VisitAllCookiesAsync();
 
-                wasm = kadCookies.First(c => c.Name == "wasm").Value;
-                pr_fp = kadCookies.First(c => c.Name == "pr_fp").Value;
-                ExpiredDate = (DateTime)kadCookies.First(c => c.Name == "wasm").Expires;
-
                 // Проверка на валидность //
-                failed = wasm is null || pr_fp is null;
-                if (failed)
+                try
+                {
+                    wasm = kadCookies.First(c => c.Name == "wasm").Value;
+                    pr_fp = kadCookies.First(c => c.Name == "pr_fp").Value;
+                    ExpiredDate = (DateTime)kadCookies.First(c => c.Name == "wasm").Expires;
+
+                }
+                catch
+                {
+                    failed = true;
+                    ExpiredDate = DateTime.MinValue; // Костыль (9(
                     await Task.Delay(5000);
-                else
-                    browser.Dispose();
+                    continue;
+                }
+
+                browser.Dispose();
             } while (failed);
 
             // Создаём класс из полученных куки //

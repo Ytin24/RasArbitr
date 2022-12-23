@@ -6,6 +6,7 @@ using RasArbitrWPF.UC;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace RasArbitrWPF.ViewModel;
@@ -74,14 +75,24 @@ public class MainWindowVM : ViewModel
     public TextInserter Sides { get; set; }
     public TextInserter Cases { get; set; }
     // ТЕСТ //
+    private bool enabled = true;
+    public bool Enabled
+    {
+        get=> enabled;
+    }
+
     private ExecCommand searchCommand;
     public ExecCommand SearchCommand
     {
         get
         {
             return searchCommand ??
-                (searchCommand = new ExecCommand(o =>
+                (searchCommand = new ExecCommand(async o =>
                 {
+                    enabled = false;
+                    btnStatus = "Ожидайте";
+                    await Task.Delay(1);
+
                     List<PostRequest.Side> sides = new();
                     foreach(var side in Sides.ItemText) {
                         if (side != "") {
@@ -100,29 +111,32 @@ public class MainWindowVM : ViewModel
                     }
                     PostRequest PostRequestbody = new() {
                         Text = request.Text,
-                        
-                        Judges = new() {},
+
                         Cases = cases,
                         Sides = sides,
                         
                         DateFrom = request.DateFrom,
                         DateTo = request.DateTo,
 
+                        IsFinished = IsFinished
                     };
-                    //DisputeTypes = new() { selectedType },
-                    //StatDisputeCategory = selectedCategory,
-                    // Courts = new() { SelectedCourt }
-                    if (selectedType != null) PostRequestbody.DisputeTypes = new() { selectedType };
-                    if (SelectedCategory != null) PostRequestbody.StatDisputeCategory = selectedCategory;
-                    if (SelectedCourt != "") PostRequestbody.Courts = new() { SelectedCourt };
-                    if (isFinished != null) PostRequestbody.IsFinished = isFinished;
-                    if (SelectedYear != null && SelectedYear != "") PostRequestbody.DocYears = new() { SelectedYear };
-                    if (SelectedInstType != null) PostRequestbody.InstanceType = new() { SelectedInstType };
-                    GetData(PostRequestbody);
-                }));
+
+                    if (selectedType != "") PostRequestbody.DisputeTypes = new() { selectedType };
+                    if (selectedCategory != "") PostRequestbody.StatDisputeCategory = selectedCategory;
+                    if (selectedCourt != "") PostRequestbody.Courts = new() { selectedCourt };
+                    if (selectedYear != "") PostRequestbody.DocYears = new() { selectedYear };
+                    if (selectedInstType != "") PostRequestbody.InstanceType = new() { selectedInstType };
+
+                    await GetData(PostRequestbody);
+                    btnStatus = "Успешно!";
+                    await Task.Delay(1000);
+
+                    btnStatus = "Запросить";
+                    enabled = true;
+                }, o => enabled));
         }
     }
-    private async void GetData(PostRequest Body) {
+    private async Task GetData(PostRequest Body) {
         itemAnswerViews.Clear();
         TestSource.Clear();
         var cookies = await RasWeb.GetCookies();
@@ -133,7 +147,6 @@ public class MainWindowVM : ViewModel
             itemAnswerViews.Add(new ItemAnswerView(data));
             TestSource.Add(data.Type);
         }
-        
     }
     private List<ItemAnswerView> itemAnswerViews= new List<ItemAnswerView>();
     private ObservableCollection<string> _TestSource = new();
@@ -164,7 +177,7 @@ public class MainWindowVM : ViewModel
         get => courts;
     }
 
-    private string? selectedCourt = null;
+    private string selectedCourt = string.Empty;
     public string SelectedCourt
     {
         get => selectedCourt;
@@ -178,7 +191,7 @@ public class MainWindowVM : ViewModel
         get => types;
     }
 
-    private string? selectedType = null;
+    private string selectedType = string.Empty;
     public string SelectedType
     {
         get => selectedType;
@@ -192,7 +205,7 @@ public class MainWindowVM : ViewModel
         get => categories;
     }
 
-    private string? selectedCategory = null;
+    private string selectedCategory = string.Empty;
     public string SelectedCategory
     {
         get => selectedCategory;
@@ -200,7 +213,7 @@ public class MainWindowVM : ViewModel
     }
 
     // Номер дела //
-    private List<string?> cases = new() { null };
+    private List<string> cases = new() { string.Empty };
     public string Case
     {
         get => cases[0];
@@ -215,7 +228,7 @@ public class MainWindowVM : ViewModel
         get => instTypes;
     }
 
-    private string? selectedInstType = null;
+    private string selectedInstType = string.Empty;
     public string SelectedInstType
     {
         get => selectedInstType;
@@ -229,7 +242,7 @@ public class MainWindowVM : ViewModel
         get => statuses;
     }
 
-    private string? isFinished = null;
+    private string isFinished = string.Empty;
     public string IsFinished
     {
         get => isFinished;
@@ -243,13 +256,19 @@ public class MainWindowVM : ViewModel
         get => years;
     }
 
-    private string? selectedYear = null;
+    private string selectedYear = string.Empty;
     public string? SelectedYear
     {
         get => selectedYear;
         set => selectedYear = value;
     }
     #endregion
+
+    private string btnStatus = "Запросить";
+    public string BtnStatus
+    {
+        get => btnStatus;
+    }
 
     private ExecCommand itemSelectCommand;
     public ExecCommand ItemSelectCommand

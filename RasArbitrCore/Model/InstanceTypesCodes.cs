@@ -2,9 +2,9 @@
 {
     public class InstanceTypesCodes
     {
-        private static Dictionary<string, string?> instTypes = new()
+        private static Dictionary<string, string> instTypes = new()
         {
-            { "[НЕ ЗАДАН]", null },
+            { "[НЕ ЗАДАН]", string.Empty },
             { "Решение", "1" },
             { "Постановление апелляции", "2" },
             { "Постановление кассации", "3" },

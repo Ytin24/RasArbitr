@@ -2,9 +2,9 @@
 {
     public class DisputeTypesCodes
     {
-        private static Dictionary<string, string?> codes = new()
+        private static Dictionary<string, string> codes = new()
         {
-            { "[НЕ ЗАДАН]", null },
+            { "[НЕ ЗАДАН]", string.Empty },
             { "Административный спор", "20c2a616-6de8-4852-9d16-1dded089351b" },
             { "Банкротство", "23ff5839-1e9b-46e4-b071-5b0a6707cb84" },
             { "Гражданский спор", "7a5758ec-e939-45f4-a6c9-cfa0fa0c2ca7" },

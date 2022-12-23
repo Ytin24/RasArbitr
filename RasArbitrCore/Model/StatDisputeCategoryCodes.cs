@@ -2,9 +2,9 @@
 {
     public class StatDisputeCategoryCodes
     {
-        private static Dictionary<string, string?> categories = new()
+        private static Dictionary<string, string> categories = new()
         {
-            { "[НЕ ЗАДАН]", null },
+            { "[НЕ ЗАДАН]", string.Empty },
             { "1. Споры о заключении договоров(контрактов)", "1" },
             { "1.1. Споры о заключении договоров на поставку товаров, выполнение работ, оказание услуг для государственных и муниципальных нужд", "1.1" },
             { "2. Споры о признании договоров недействительными", "2" },

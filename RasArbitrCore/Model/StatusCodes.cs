@@ -8,9 +8,9 @@ namespace RasArbitrCore.Model
 {
     public class StatusCodes
     {
-        private static Dictionary<string, string?> statuses = new()
+        private static Dictionary<string, string> statuses = new()
         {
-            { "Все", null },
+            { "Все", string.Empty },
             { "Только завершенные", "1" },
             { "Только не завершённые", "0" },
         };
